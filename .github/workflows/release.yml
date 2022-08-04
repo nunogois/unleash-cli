@@ -200,6 +200,6 @@ jobs:
             unleash-macos-x64.tar.gz
             unleash-macos-arm64.tar.gz
             unleash-linux-x64.tar.gz
-            unleash-macos-arm64.tar.gz
+            unleash-linux-arm64.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

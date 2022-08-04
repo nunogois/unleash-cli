@@ -1,5 +1,7 @@
 import axios from 'axios'
+import chalk from 'chalk'
 import { config } from './config'
+import { logger } from './logger'
 
 export enum ROUTES {
   API_ADMIN = 'api/admin',
@@ -7,6 +9,12 @@ export enum ROUTES {
 }
 
 const getUrl = (url: string) => {
+  if (!config.isValid()) {
+    logger.fatal(
+      `Invalid configuration. Please run ${chalk.cyan('unleash setup')} first.`
+    )
+  }
+
   if (url.startsWith('http')) {
     return url
   }

@@ -1,6 +1,6 @@
 {
   "name": "@nunogois/unleash-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "CLI for interfacing with Unleash: https://www.getunleash.io/",
   "scripts": {
     "dev": "ts-node src/unleash",
