@@ -164,15 +164,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download macos tarball
+      - name: Download macos-x64 tarball
         uses: actions/download-artifact@v2
         with:
-          name: bin-macos
+          name: bin-macos-x64
+
+      - name: Download macos-x64 tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: bin-macos-arm64
 
       - name: Download linux tarball
         uses: actions/download-artifact@v2
         with:
-          name: bin-linux
+          name: bin-linux-x64
+      
+      - name: Download linux tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: bin-linux-arm64
 
       - name: Compute checksums
         run: |

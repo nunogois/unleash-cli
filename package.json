@@ -1,5 +1,5 @@
 {
-  "name": "unleash-cli",
+  "name": "@nunogois/unleash-cli",
   "version": "0.0.1",
   "description": "CLI for interfacing with Unleash: https://www.getunleash.io/",
   "scripts": {
