@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "ts-node src/unleash",
     "build": "tsc",
-    "package": "yarn build && pkg . --no-bytecode --public-packages \"*\" --public --out-path bin/unleash"
+    "package": "yarn build && pkg . --no-bytecode --public-packages \"*\" --public --out-path bin/unleash",
+    "package:macos:x64": "pkg . --no-bytecode --public-packages \"*\" --public --targets node14-macos-x64 --output bin/macos-x64/unleash",
+    "package:macos:arm64": "pkg . --no-bytecode --public-packages \"*\" --public --targets node14-macos-arm64 --output bin/macos-arm64/unleash",
+    "package:linux:x64": "pkg . --no-bytecode --public-packages \"*\" --public --targets node14-linux-x64 --output bin/linux-x64/unleash",
+    "package:linux:arm64": "pkg . --no-bytecode --public-packages \"*\" --public --targets node14-linux-arm64 --output bin/linux-arm64/unleash"
   },
   "main": "./dist/unleash.js",
   "bin": {
