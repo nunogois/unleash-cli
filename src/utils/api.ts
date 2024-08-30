@@ -4,8 +4,9 @@ import { config } from './config'
 import { logger } from './logger'
 
 export enum ROUTES {
-  API_ADMIN = 'api/admin',
-  FEATURE_TOGGLES = 'api/admin/features'
+  API_ADMIN = 'api/admin'
+  // OPENAPI_SPEC = 'docs/openapi.json',
+  // SWAGGER = 'docs/openapi/'
 }
 
 const getUrl = (url: string) => {
@@ -28,11 +29,13 @@ const getConfig = () => ({
   }
 })
 
-const get = async <T>(url: string): Promise<T> =>
-  await axios.get(getUrl(url), getConfig()).then(res => res.data)
+const get = async <T>(url: string): Promise<T> => {
+  console.log(getUrl(url))
+  return axios.get(getUrl(url), getConfig()).then(res => res.data)
+}
 
-const post = async (url: string): Promise<void> =>
-  axios.post(getUrl(url), {}, getConfig())
+const post = async <T>(url: string): Promise<T> =>
+  axios.post(getUrl(url), {}, getConfig()).then(res => res.data)
 
 export const api = {
   get,

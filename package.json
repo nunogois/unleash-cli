@@ -1,6 +1,6 @@
 {
   "name": "@nunogois/unleash-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CLI for interfacing with Unleash: https://www.getunleash.io/",
   "scripts": {
     "dev": "ts-node src/unleash",
@@ -37,6 +37,7 @@
     "inquirer": "^8.0.0",
     "nanospinner": "^1.1.0",
     "nconf": "^0.12.0",
+    "openai": "^4.57.0",
     "yargs": "^17.5.1"
   },
   "devDependencies": {

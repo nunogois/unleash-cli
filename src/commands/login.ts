@@ -50,10 +50,43 @@ export const handler = async () => {
     }
   ])
 
+  const { setupOpenAI } = await inquirer.prompt<{ setupOpenAI: boolean }>([
+    {
+      message: 'Setup OpenAI API Token?',
+      name: 'setupOpenAI',
+      type: 'confirm',
+      default: false
+    }
+  ])
+
+  if (!setupOpenAI) {
+    await save({ url, token })
+    return
+  }
+
+  const { openAIToken } = await inquirer.prompt<{ openAIToken: string }>([
+    {
+      message: 'OpenAI API Token:',
+      name: 'openAIToken'
+    }
+  ])
+
+  await save({ url, token, openAIToken })
+}
+
+const save = async ({
+  url,
+  token,
+  openAIToken
+}: {
+  url: string
+  token: string
+  openAIToken?: string
+}) => {
   const spinner = createSpinner('Saving...').start()
   try {
-    config.save({ url, token })
-    spinner.success({ text: 'Token saved successfully.' })
+    config.save({ url, token, openAIToken })
+    spinner.success({ text: 'Configuration saved successfully.' })
   } catch (error: any) {
     spinner.error({ text: error.message })
   }
