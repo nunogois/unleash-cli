@@ -6,9 +6,19 @@ import { Spinner } from 'nanospinner'
 // import axios from 'axios'
 // import { logger } from './logger'
 
-const client = new OpenAI({
-  apiKey: config.openAIToken
-})
+let client: OpenAI | undefined
+
+const initOpenAI = () => {
+  if (!client) {
+    if (!config.openAIToken) {
+      throw new Error('OpenAI token is not set. Please run unleash setup.')
+    }
+    client = new OpenAI({
+      apiKey: config.openAIToken
+    })
+  }
+  return client
+}
 
 // // TODO: The idea would be to provide the OpenAPI spec to the AI assistant and allow it to interact with the Unleash API in a dynamic way. Unfortunately it was not trivial.
 // const makeApiRequest = async ({
@@ -88,6 +98,7 @@ export const ai = async (
   conversationHistory: ChatCompletionMessageParam[],
   spinner: Spinner
 ) => {
+  const client = initOpenAI()
   const stream = client.beta.chat.completions.runTools({
     model: 'gpt-4o-mini',
     messages: conversationHistory,
