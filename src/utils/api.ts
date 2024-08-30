@@ -29,10 +29,8 @@ const getConfig = () => ({
   }
 })
 
-const get = async <T>(url: string): Promise<T> => {
-  console.log(getUrl(url))
-  return axios.get(getUrl(url), getConfig()).then(res => res.data)
-}
+const get = async <T>(url: string): Promise<T> =>
+  axios.get(getUrl(url), getConfig()).then(res => res.data)
 
 const post = async <T>(url: string): Promise<T> =>
   axios.post(getUrl(url), {}, getConfig()).then(res => res.data)

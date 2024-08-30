@@ -8,9 +8,10 @@ import { Spinner } from 'nanospinner'
 
 let client: OpenAI | undefined
 
-const initOpenAI = () => {
+const initOpenAI = (spinner: Spinner) => {
   if (!client) {
     if (!config.openAIToken) {
+      spinner.error()
       throw new Error('OpenAI token is not set. Please run unleash setup.')
     }
     client = new OpenAI({
@@ -98,7 +99,7 @@ export const ai = async (
   conversationHistory: ChatCompletionMessageParam[],
   spinner: Spinner
 ) => {
-  const client = initOpenAI()
+  const client = initOpenAI(spinner)
   const stream = client.beta.chat.completions.runTools({
     model: 'gpt-4o-mini',
     messages: conversationHistory,

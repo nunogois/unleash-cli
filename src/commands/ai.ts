@@ -35,7 +35,7 @@ export const handler = async () => {
 
     conversationHistory.push({ role: 'user', content: prompt })
 
-    const spinner = createSpinner('Processing...\n').start()
+    const spinner = createSpinner('Processing...').start()
     const response = await ai(conversationHistory, spinner)
 
     conversationHistory.push({ role: 'assistant', content: response })
